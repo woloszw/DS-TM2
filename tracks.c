@@ -1,0 +1,36 @@
+
+#include "tracks.h"
+
+#define RIGHT_TRACK_MOVE 11
+#define RIGHT_TRACK_DIR 7
+#define LEFT_TRACK_DIR 10
+#define LEFT_TRACK_MOVE 5
+#define LEFT_TRACK_PWM_CHANEL 5
+#define RIGHT_TRACK_PWM_CHANEL 0
+
+void tracks_init(void){
+
+	SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK; /* Enable clock fór GPIO B */
+	SIM->SCGC5 |= SIM_SCGC5_PORTA_MASK; /* Enable clock fór GPIO A */
+	SIM->SCGC6 |= SIM_SCGC6_TPM0_MASK;		//  Enable TPM0 mask in SCGC6 register
+	SIM->SOPT2 |= SIM_SOPT2_TPMSRC(1);  //  Choose MCGFLLCLK clock source
+	
+	PORTA -> PCR[LEFT_TRACK_MOVE]	|= PORT_PCR_MUX(2); //  PTA5 as output PWM (TPM0_CH5)
+	PORTB->PCR[RIGHT_TRACK_DIR] |= PORT_PCR_MUX(1);  //GPIO PTB7 
+	PORTB->PCR[LEFT_TRACK_DIR] |= PORT_PCR_MUX(1);	//GPIO PTB10
+	PORTB->PCR[RIGHT_TRACK_MOVE] |= PORT_PCR_MUX(2);  //PTB11 as output PWM (TPM0_CH0)
+	
+	TPM0->SC |= TPM_SC_PS(3);  					// Set prescaler to 128
+	TPM0->SC |= TPM_SC_CMOD(1);					//  For TMP0, select the internal input clock source
+	TPM0->MOD = 100;
+	TPM0->CONTROLS[RIGHT_TRACK_PWM_CHANEL].CnSC |= (TPM_CnSC_MSB_MASK | TPM_CnSC_ELSA_MASK);
+	TPM0->CONTROLS[LEFT_TRACK_PWM_CHANEL].CnSC |= (TPM_CnSC_MSB_MASK | TPM_CnSC_ELSA_MASK);
+	TPM0->CONTROLS[RIGHT_TRACK_PWM_CHANEL].CnV = 70;
+	TPM0->CONTROLS[LEFT_TRACK_PWM_CHANEL].CnV = 70;
+	
+	PTA->PDDR |= (1<<LEFT_TRACK_MOVE); /* Set as óutput */
+	PTB->PDDR |= (1<<RIGHT_TRACK_MOVE); 
+	PTB->PDDR |= (1<<LEFT_TRACK_DIR); 
+	PTB->PDDR |= (1<<RIGHT_TRACK_DIR); 
+}
+

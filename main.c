@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "tracks.h"
 
 #define ENTER	0xa
 
