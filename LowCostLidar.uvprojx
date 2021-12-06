@@ -387,6 +387,11 @@
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
             </File>
+            <File>
+              <FileName>SharpSens.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\SharpSens.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -396,6 +401,11 @@
               <FileName>frdm_bsp.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\frdm_bsp.h</FilePath>
+            </File>
+            <File>
+              <FileName>SharpSensor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\SharpSensor.h</FilePath>
             </File>
           </Files>
         </Group>
