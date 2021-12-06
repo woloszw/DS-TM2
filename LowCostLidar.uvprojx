@@ -10,6 +10,7 @@
       <TargetName>LowCostLidar</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>5060960::V5.06 update 7 (build 960)::.\ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -392,6 +393,11 @@
               <FileType>1</FileType>
               <FilePath>.\SharpSens.c</FilePath>
             </File>
+            <File>
+              <FileName>UART.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\UART.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -403,9 +409,14 @@
               <FilePath>.\frdm_bsp.h</FilePath>
             </File>
             <File>
-              <FileName>SharpSensor.h</FileName>
+              <FileName>SharpSens.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\SharpSensor.h</FilePath>
+              <FilePath>.\SharpSens.h</FilePath>
+            </File>
+            <File>
+              <FileName>UART.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\UART.h</FilePath>
             </File>
           </Files>
         </Group>
