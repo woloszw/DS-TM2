@@ -12,7 +12,7 @@ void tracks_init(void){
 
 	SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK; /* Enable clock fór GPIO B */
 	SIM->SCGC5 |= SIM_SCGC5_PORTA_MASK; /* Enable clock fór GPIO A */
-	SIM->SCGC6 |= SIM_SCGC6_TPM0_MASK;		//  Enable TPM0 mask in SCGC6 register
+	SIM->SCGC6 |= SIM_SCGC6_TPM0_MASK;	//  Enable TPM0 mask in SCGC6 register
 	SIM->SOPT2 |= SIM_SOPT2_TPMSRC(1);  //  Choose MCGFLLCLK clock source
 	
 	PORTA -> PCR[LEFT_TRACK_MOVE]	|= PORT_PCR_MUX(2); //  PTA5 as output PWM (TPM0_CH5)
