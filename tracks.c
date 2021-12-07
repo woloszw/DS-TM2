@@ -20,7 +20,12 @@ void tracks_init(void){
 	PORTB->PCR[LEFT_TRACK_DIR] |= PORT_PCR_MUX(1);	//GPIO PTB10
 	PORTB->PCR[RIGHT_TRACK_MOVE] |= PORT_PCR_MUX(2);  //PTB11 as output PWM (TPM0_CH0)
 	
-	TPM0->SC |= TPM_SC_PS(3);  					// Set prescaler to 128
+	PTA->PDDR |= (1<<LEFT_TRACK_MOVE); /* Set as óutput */
+	PTB->PDDR |= (1<<RIGHT_TRACK_MOVE); 
+	PTB->PDDR |= (1<<LEFT_TRACK_DIR); 
+	PTB->PDDR |= (1<<RIGHT_TRACK_DIR);
+	
+	TPM0->SC |= TPM_SC_PS(3);  					// Set prescaler to 8
 	TPM0->SC |= TPM_SC_CMOD(1);					//  For TMP0, select the internal input clock source
 	TPM0->MOD = 100;
 	TPM0->CONTROLS[RIGHT_TRACK_PWM_CHANEL].CnSC |= (TPM_CnSC_MSB_MASK | TPM_CnSC_ELSA_MASK);
@@ -28,9 +33,6 @@ void tracks_init(void){
 	TPM0->CONTROLS[RIGHT_TRACK_PWM_CHANEL].CnV = 70;
 	TPM0->CONTROLS[LEFT_TRACK_PWM_CHANEL].CnV = 70;
 	
-	PTA->PDDR |= (1<<LEFT_TRACK_MOVE); /* Set as óutput */
-	PTB->PDDR |= (1<<RIGHT_TRACK_MOVE); 
-	PTB->PDDR |= (1<<LEFT_TRACK_DIR); 
-	PTB->PDDR |= (1<<RIGHT_TRACK_DIR); 
+	 
 }
 

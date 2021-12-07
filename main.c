@@ -16,10 +16,11 @@ void ADC0_IRQHandler()
 {	
 	ADC_temp = ADC0->R[0];	// Odczyt danej i skasowanie flagi COCO
 
-	wynik = ADC_temp;			// Wyslij nowa dana do petli glównej
+	wynik =(float) ADC_temp;			// Wyslij nowa dana do petli glównej
 
 	NVIC_EnableIRQ(ADC0_IRQn);
 }
+
 
 int main (void)
 {
@@ -31,6 +32,9 @@ int main (void)
 	uint32_t ADC_calibration = ADC_Init();
 	UART0_Init();
 
+	tracks_init();
+	
+	
 	if (ADC_calibration) //Testing whether the calibration has worked properly
 	{
 		for(uint32_t i=0;calib_error[i]!=0;i++)
@@ -57,8 +61,8 @@ int main (void)
 	
 	while(1)
 	{
-			//wynik = wynik * volt_coeff;
-			sprintf(rx_buf,"N=%d%c", wynik);
+			wynik = wynik * volt_coeff;
+			sprintf(rx_buf,"N=%f", wynik);
 			for(uint32_t i=0;rx_buf[i]!=0;i++)
 			{
 				while(!(UART0->S1 & UART0_S1_TDRE_MASK));
@@ -66,7 +70,7 @@ int main (void)
 			}
 			while(!(UART0->S1 & UART0_S1_TDRE_MASK));
 			UART0->D = ENTER;
-			DELAY(500)	
+			DELAY(500);	
 	}
 }
 
