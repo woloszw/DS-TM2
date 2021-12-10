@@ -17,31 +17,40 @@ void ADC0_IRQHandler()
 {	
 	if (counter == 0)
 	{
-		ADC0->SC1[0] |= ADC_SC1_ADCH(2); 
+		
+		//ADC0->SC1[0] &= ~(ADC_SC1_ADCH(6)); 
+		
 		sensOne = ADC0->R[0];
 		ADC_temp =(float) sensOne;
 	}
-	if (counter == 1)
+	else if (counter == 1)
 	{
-		ADC0->SC1[0] |= ADC_SC1_ADCH(6); 
+		
+		//ADC0->SC1[0] &= ~(ADC_SC1_ADCH(2));
+
 		sensTwo = ADC0->R[0];
 		ADC_temp2 =(float) sensTwo;
 	}
 	
+		//Uzywam countera by moc zczytywac raz z jednego raz z drugiego sensora
 	counter += 1;
 	counter = counter % 2;
 	
 	
 	NVIC_EnableIRQ(ADC0_IRQn);
-	
+	if(counter ==0)
+		ADC0->SC1[0] |= ADC_SC1_ADCH(0x02); 
+	else if (counter == 1)
+		ADC0->SC1[0] |= ADC_SC1_ADCH(0x06); 
 }
 
 
 int main (void)
 {
-	uint8_t temp=0;
 	char rx_buf[]={0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20};
 	char rx_buf2[]={0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20};
+	char counter_string[]={0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20}; 
+	
 	
 	char calib_error[] = "Calibration error";
 	char calib_correct[] = "Calibration succeeded";
@@ -78,7 +87,24 @@ int main (void)
 	ADC0->SC1[0] = ADC_SC1_AIEN_MASK;
 	
 	while(1)
-	{		//DATA FROM 1ST SENSOR
+		
+	
+	
+{		
+			sprintf(counter_string,"Counter=%d", counter);
+			//Printing counter value
+			while(!(UART0->S1 & UART0_S1_TDRE_MASK));
+			UART0->D = ENTER;
+			for(uint32_t i=0;counter_string[i]!=0;i++)
+			{
+				while(!(UART0->S1 & UART0_S1_TDRE_MASK));
+				UART0->D = counter_string[i];
+			}
+			while(!(UART0->S1 & UART0_S1_TDRE_MASK));
+			UART0->D = ENTER;
+	
+	
+	//DATA FROM 1ST SENSOR
 			ADC_temp = ADC_temp * volt_coeff;
 			sprintf(rx_buf,"V1=%f", ADC_temp);
 		
@@ -103,7 +129,7 @@ int main (void)
 			while(!(UART0->S1 & UART0_S1_TDRE_MASK));
 			UART0->D = ENTER;
 			
-			DELAY(100);	
+			DELAY(500);	
 	}
 }
 
