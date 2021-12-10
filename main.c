@@ -9,16 +9,31 @@
 #define ENTER	0xa
 
 float volt_coeff = ((float)(((float)2.91) / 4095) );			// Wspólczynnik korekcji wyniku, w stosunku do napiecia referencyjnego przetwornika
-uint16_t ADC_temp;
-float wynik;
+uint16_t sensOne, sensTwo;
+float ADC_temp, ADC_temp2;
+uint16_t counter = 1;
 
 void ADC0_IRQHandler()
 {	
-	ADC_temp = ADC0->R[0];	// Odczyt danej i skasowanie flagi COCO
-
-	wynik =(float) ADC_temp;			// Wyslij nowa dana do petli glównej
-
+	if (counter == 0)
+	{
+		ADC0->SC1[0] |= ADC_SC1_ADCH(2); 
+		sensOne = ADC0->R[0];
+		ADC_temp =(float) sensOne;
+	}
+	if (counter == 1)
+	{
+		ADC0->SC1[0] |= ADC_SC1_ADCH(6); 
+		sensTwo = ADC0->R[0];
+		ADC_temp2 =(float) sensTwo;
+	}
+	
+	counter += 1;
+	counter = counter % 2;
+	
+	
 	NVIC_EnableIRQ(ADC0_IRQn);
+	
 }
 
 
@@ -26,6 +41,8 @@ int main (void)
 {
 	uint8_t temp=0;
 	char rx_buf[]={0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20};
+	char rx_buf2[]={0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20};
+	
 	char calib_error[] = "Calibration error";
 	char calib_correct[] = "Calibration succeeded";
 		
@@ -57,12 +74,14 @@ int main (void)
 		UART0->D = ENTER;
 	}
 	
-	ADC0->SC1[0] = ADC_SC1_AIEN_MASK | ADC_SC1_ADCH(0);
+	
+	ADC0->SC1[0] = ADC_SC1_AIEN_MASK;
 	
 	while(1)
-	{
-			wynik = wynik * volt_coeff;
-			sprintf(rx_buf,"N=%f", wynik);
+	{		//DATA FROM 1ST SENSOR
+			ADC_temp = ADC_temp * volt_coeff;
+			sprintf(rx_buf,"V1=%f", ADC_temp);
+		
 			for(uint32_t i=0;rx_buf[i]!=0;i++)
 			{
 				while(!(UART0->S1 & UART0_S1_TDRE_MASK));
@@ -70,7 +89,21 @@ int main (void)
 			}
 			while(!(UART0->S1 & UART0_S1_TDRE_MASK));
 			UART0->D = ENTER;
-			DELAY(500);	
+			
+			//DATA FROM 2ND SENSOR
+			
+			ADC_temp2 = ADC_temp2 * volt_coeff;
+			sprintf(rx_buf2,"V2=%f", ADC_temp2);
+		
+			for(uint32_t i=0;rx_buf2[i]!=0;i++)
+			{
+				while(!(UART0->S1 & UART0_S1_TDRE_MASK));
+				UART0->D = rx_buf2[i];
+			}
+			while(!(UART0->S1 & UART0_S1_TDRE_MASK));
+			UART0->D = ENTER;
+			
+			DELAY(100);	
 	}
 }
 

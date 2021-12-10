@@ -5,7 +5,7 @@ Component: ARM Compiler 5.06 update 7 (build 960) Tool: armlink [4d3601]
 Section Cross References
 
     main.o(i.ADC0_IRQHandler) refers to fflti.o(.text) for __aeabi_ui2f
-    main.o(i.ADC0_IRQHandler) refers to main.o(.data) for ADC_temp
+    main.o(i.ADC0_IRQHandler) refers to main.o(.data) for counter
     main.o(i.main) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
     main.o(i.main) refers to _printf_f.o(.ARM.Collect$$_printf_percent$$00000003) for _printf_f
     main.o(i.main) refers to printf1.o(x$fpl$printf1) for _printf_fp_dec
@@ -405,34 +405,34 @@ Image Symbol Table
     .text                                    0x00001174   Section        2  use_no_semi.o(.text)
     .text                                    0x00001176   Section        0  indicate_semi.o(.text)
     i.ADC0_IRQHandler                        0x00001178   Section        0  main.o(i.ADC0_IRQHandler)
-    i.ADC_Init                               0x000011bc   Section        0  sharpsens.o(i.ADC_Init)
-    i.SystemInit                             0x000012e0   Section        0  system_mkl05z4.o(i.SystemInit)
-    i.UART0_Init                             0x0000133c   Section        0  uart.o(i.UART0_Init)
-    i.__ARM_common_ll_muluu                  0x000013bc   Section        0  btod.o(i.__ARM_common_ll_muluu)
-    i.__ARM_fpclassify                       0x000013ec   Section        0  fpclassify.o(i.__ARM_fpclassify)
-    i.main                                   0x00001418   Section        0  main.o(i.main)
-    i.tracks_init                            0x00001594   Section        0  tracks.o(i.tracks_init)
-    locale$$code                             0x00001688   Section       44  lc_numeric_c.o(locale$$code)
-    x$fpl$fmul                               0x000016b4   Section      176  fmul.o(x$fpl$fmul)
-    x$fpl$printf1                            0x00001764   Section       16  printf1.o(x$fpl$printf1)
-    .constdata                               0x00001774   Section      148  bigflt0.o(.constdata)
-    x$fpl$usenofp                            0x00001774   Section        0  usenofp.o(x$fpl$usenofp)
-    tenpwrs_x                                0x00001774   Data          60  bigflt0.o(.constdata)
-    tenpwrs_i                                0x000017b0   Data          64  bigflt0.o(.constdata)
-    locale$$data                             0x00001828   Section       28  lc_numeric_c.o(locale$$data)
-    __lcnum_c_name                           0x0000182c   Data           2  lc_numeric_c.o(locale$$data)
-    __lcnum_c_start                          0x00001834   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_point                          0x00001840   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_thousands                      0x00001842   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_grouping                       0x00001843   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_end                            0x00001844   Data           0  lc_numeric_c.o(locale$$data)
-    .data                                    0x1ffffc00   Section       12  main.o(.data)
-    .bss                                     0x1ffffc0c   Section       96  libspace.o(.bss)
-    HEAP                                     0x1ffffc70   Section        0  startup_mkl05z4.o(HEAP)
-    STACK                                    0x1ffffc70   Section      768  startup_mkl05z4.o(STACK)
-    Heap_Mem                                 0x1ffffc70   Data           0  startup_mkl05z4.o(HEAP)
-    Stack_Mem                                0x1ffffc70   Data         768  startup_mkl05z4.o(STACK)
-    __initial_sp                             0x1fffff70   Data           0  startup_mkl05z4.o(STACK)
+    i.ADC_Init                               0x00001220   Section        0  sharpsens.o(i.ADC_Init)
+    i.SystemInit                             0x00001344   Section        0  system_mkl05z4.o(i.SystemInit)
+    i.UART0_Init                             0x000013a0   Section        0  uart.o(i.UART0_Init)
+    i.__ARM_common_ll_muluu                  0x00001420   Section        0  btod.o(i.__ARM_common_ll_muluu)
+    i.__ARM_fpclassify                       0x00001450   Section        0  fpclassify.o(i.__ARM_fpclassify)
+    i.main                                   0x0000147c   Section        0  main.o(i.main)
+    i.tracks_init                            0x0000166c   Section        0  tracks.o(i.tracks_init)
+    locale$$code                             0x00001760   Section       44  lc_numeric_c.o(locale$$code)
+    x$fpl$fmul                               0x0000178c   Section      176  fmul.o(x$fpl$fmul)
+    x$fpl$printf1                            0x0000183c   Section       16  printf1.o(x$fpl$printf1)
+    .constdata                               0x0000184c   Section      148  bigflt0.o(.constdata)
+    x$fpl$usenofp                            0x0000184c   Section        0  usenofp.o(x$fpl$usenofp)
+    tenpwrs_x                                0x0000184c   Data          60  bigflt0.o(.constdata)
+    tenpwrs_i                                0x00001888   Data          64  bigflt0.o(.constdata)
+    locale$$data                             0x00001900   Section       28  lc_numeric_c.o(locale$$data)
+    __lcnum_c_name                           0x00001904   Data           2  lc_numeric_c.o(locale$$data)
+    __lcnum_c_start                          0x0000190c   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_point                          0x00001918   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_thousands                      0x0000191a   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_grouping                       0x0000191b   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_end                            0x0000191c   Data           0  lc_numeric_c.o(locale$$data)
+    .data                                    0x1ffffc00   Section       18  main.o(.data)
+    .bss                                     0x1ffffc14   Section       96  libspace.o(.bss)
+    HEAP                                     0x1ffffc78   Section        0  startup_mkl05z4.o(HEAP)
+    STACK                                    0x1ffffc78   Section      768  startup_mkl05z4.o(STACK)
+    Heap_Mem                                 0x1ffffc78   Data           0  startup_mkl05z4.o(HEAP)
+    Stack_Mem                                0x1ffffc78   Data         768  startup_mkl05z4.o(STACK)
+    __initial_sp                             0x1fffff78   Data           0  startup_mkl05z4.o(STACK)
 
     Global Symbols
 
@@ -607,26 +607,29 @@ Image Symbol Table
     __I$use$semihosting                      0x00001175   Thumb Code     0  use_no_semi.o(.text)
     __use_no_semihosting_swi                 0x00001175   Thumb Code     2  use_no_semi.o(.text)
     __semihosting_library_function           0x00001177   Thumb Code     0  indicate_semi.o(.text)
-    ADC0_IRQHandler                          0x00001179   Thumb Code    52  main.o(i.ADC0_IRQHandler)
-    ADC_Init                                 0x000011bd   Thumb Code   270  sharpsens.o(i.ADC_Init)
-    SystemInit                               0x000012e1   Thumb Code    78  system_mkl05z4.o(i.SystemInit)
-    UART0_Init                               0x0000133d   Thumb Code   116  uart.o(i.UART0_Init)
-    __ARM_common_ll_muluu                    0x000013bd   Thumb Code    48  btod.o(i.__ARM_common_ll_muluu)
-    __ARM_fpclassify                         0x000013ed   Thumb Code    40  fpclassify.o(i.__ARM_fpclassify)
-    main                                     0x00001419   Thumb Code   286  main.o(i.main)
-    tracks_init                              0x00001595   Thumb Code   222  tracks.o(i.tracks_init)
-    _get_lc_numeric                          0x00001689   Thumb Code    44  lc_numeric_c.o(locale$$code)
-    __aeabi_fmul                             0x000016b5   Thumb Code     0  fmul.o(x$fpl$fmul)
-    _fmul                                    0x000016b5   Thumb Code   172  fmul.o(x$fpl$fmul)
-    _printf_fp_dec                           0x00001765   Thumb Code    16  printf1.o(x$fpl$printf1)
-    __I$use$fp                               0x00001774   Number         0  usenofp.o(x$fpl$usenofp)
-    Region$$Table$$Base                      0x00001808   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00001828   Number         0  anon$$obj.o(Region$$Table)
+    ADC0_IRQHandler                          0x00001179   Thumb Code   138  main.o(i.ADC0_IRQHandler)
+    ADC_Init                                 0x00001221   Thumb Code   268  sharpsens.o(i.ADC_Init)
+    SystemInit                               0x00001345   Thumb Code    78  system_mkl05z4.o(i.SystemInit)
+    UART0_Init                               0x000013a1   Thumb Code   116  uart.o(i.UART0_Init)
+    __ARM_common_ll_muluu                    0x00001421   Thumb Code    48  btod.o(i.__ARM_common_ll_muluu)
+    __ARM_fpclassify                         0x00001451   Thumb Code    40  fpclassify.o(i.__ARM_fpclassify)
+    main                                     0x0000147d   Thumb Code   390  main.o(i.main)
+    tracks_init                              0x0000166d   Thumb Code   222  tracks.o(i.tracks_init)
+    _get_lc_numeric                          0x00001761   Thumb Code    44  lc_numeric_c.o(locale$$code)
+    __aeabi_fmul                             0x0000178d   Thumb Code     0  fmul.o(x$fpl$fmul)
+    _fmul                                    0x0000178d   Thumb Code   172  fmul.o(x$fpl$fmul)
+    _printf_fp_dec                           0x0000183d   Thumb Code    16  printf1.o(x$fpl$printf1)
+    __I$use$fp                               0x0000184c   Number         0  usenofp.o(x$fpl$usenofp)
+    Region$$Table$$Base                      0x000018e0   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00001900   Number         0  anon$$obj.o(Region$$Table)
     volt_coeff                               0x1ffffc00   Data           4  main.o(.data)
-    ADC_temp                                 0x1ffffc04   Data           2  main.o(.data)
-    wynik                                    0x1ffffc08   Data           4  main.o(.data)
-    __libspace_start                         0x1ffffc0c   Data          96  libspace.o(.bss)
-    __temporary_stack_top$libspace           0x1ffffc6c   Data           0  libspace.o(.bss)
+    sensOne                                  0x1ffffc04   Data           2  main.o(.data)
+    sensTwo                                  0x1ffffc06   Data           2  main.o(.data)
+    ADC_temp                                 0x1ffffc08   Data           4  main.o(.data)
+    ADC_temp2                                0x1ffffc0c   Data           4  main.o(.data)
+    counter                                  0x1ffffc10   Data           2  main.o(.data)
+    __libspace_start                         0x1ffffc14   Data          96  libspace.o(.bss)
+    __temporary_stack_top$libspace           0x1ffffc74   Data           0  libspace.o(.bss)
 
 
 
@@ -636,9 +639,9 @@ Memory Map of the image
 
   Image Entry point : 0x000001bd
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x00001850, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00001930, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00001844, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x0000191c, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -726,38 +729,38 @@ Memory Map of the image
     0x00001174   0x00001174   0x00000002   Code   RO          393    .text               c_p.l(use_no_semi.o)
     0x00001176   0x00001176   0x00000000   Code   RO          395    .text               c_p.l(indicate_semi.o)
     0x00001176   0x00001176   0x00000002   PAD
-    0x00001178   0x00001178   0x00000044   Code   RO            3    i.ADC0_IRQHandler   main.o
-    0x000011bc   0x000011bc   0x00000124   Code   RO           79    i.ADC_Init          sharpsens.o
-    0x000012e0   0x000012e0   0x0000005c   Code   RO          156    i.SystemInit        system_mkl05z4.o
-    0x0000133c   0x0000133c   0x00000080   Code   RO          102    i.UART0_Init        uart.o
-    0x000013bc   0x000013bc   0x00000030   Code   RO          283    i.__ARM_common_ll_muluu  c_p.l(btod.o)
-    0x000013ec   0x000013ec   0x0000002c   Code   RO          292    i.__ARM_fpclassify  m_ps.l(fpclassify.o)
-    0x00001418   0x00001418   0x0000017c   Code   RO            4    i.main              main.o
-    0x00001594   0x00001594   0x000000f4   Code   RO          125    i.tracks_init       tracks.o
-    0x00001688   0x00001688   0x0000002c   Code   RO          286    locale$$code        c_p.l(lc_numeric_c.o)
-    0x000016b4   0x000016b4   0x000000b0   Code   RO          233    x$fpl$fmul          fz_ps.l(fmul.o)
-    0x00001764   0x00001764   0x00000010   Code   RO          235    x$fpl$printf1       fz_ps.l(printf1.o)
-    0x00001774   0x00001774   0x00000000   Code   RO          249    x$fpl$usenofp       fz_ps.l(usenofp.o)
-    0x00001774   0x00001774   0x00000094   Data   RO          279    .constdata          c_p.l(bigflt0.o)
-    0x00001808   0x00001808   0x00000020   Data   RO          441    Region$$Table       anon$$obj.o
-    0x00001828   0x00001828   0x0000001c   Data   RO          285    locale$$data        c_p.l(lc_numeric_c.o)
+    0x00001178   0x00001178   0x000000a8   Code   RO            3    i.ADC0_IRQHandler   main.o
+    0x00001220   0x00001220   0x00000124   Code   RO           79    i.ADC_Init          sharpsens.o
+    0x00001344   0x00001344   0x0000005c   Code   RO          156    i.SystemInit        system_mkl05z4.o
+    0x000013a0   0x000013a0   0x00000080   Code   RO          102    i.UART0_Init        uart.o
+    0x00001420   0x00001420   0x00000030   Code   RO          283    i.__ARM_common_ll_muluu  c_p.l(btod.o)
+    0x00001450   0x00001450   0x0000002c   Code   RO          292    i.__ARM_fpclassify  m_ps.l(fpclassify.o)
+    0x0000147c   0x0000147c   0x000001f0   Code   RO            4    i.main              main.o
+    0x0000166c   0x0000166c   0x000000f4   Code   RO          125    i.tracks_init       tracks.o
+    0x00001760   0x00001760   0x0000002c   Code   RO          286    locale$$code        c_p.l(lc_numeric_c.o)
+    0x0000178c   0x0000178c   0x000000b0   Code   RO          233    x$fpl$fmul          fz_ps.l(fmul.o)
+    0x0000183c   0x0000183c   0x00000010   Code   RO          235    x$fpl$printf1       fz_ps.l(printf1.o)
+    0x0000184c   0x0000184c   0x00000000   Code   RO          249    x$fpl$usenofp       fz_ps.l(usenofp.o)
+    0x0000184c   0x0000184c   0x00000094   Data   RO          279    .constdata          c_p.l(bigflt0.o)
+    0x000018e0   0x000018e0   0x00000020   Data   RO          441    Region$$Table       anon$$obj.o
+    0x00001900   0x00001900   0x0000001c   Data   RO          285    locale$$data        c_p.l(lc_numeric_c.o)
 
 
-    Execution Region ER_RW (Exec base: 0x1ffffc00, Load base: 0x00001844, Size: 0x0000000c, Max: 0xffffffff, ABSOLUTE)
-
-    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
-
-    0x1ffffc00   0x00001844   0x0000000c   Data   RW            5    .data               main.o
-
-
-    Execution Region ER_ZI (Exec base: 0x1ffffc0c, Load base: 0x00001850, Size: 0x00000364, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x1ffffc00, Load base: 0x0000191c, Size: 0x00000014, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x1ffffc0c        -       0x00000060   Zero   RW          295    .bss                c_p.l(libspace.o)
-    0x1ffffc6c   0x00001850   0x00000004   PAD
-    0x1ffffc70        -       0x00000000   Zero   RW          144    HEAP                startup_mkl05z4.o
-    0x1ffffc70        -       0x00000300   Zero   RW          143    STACK               startup_mkl05z4.o
+    0x1ffffc00   0x0000191c   0x00000012   Data   RW            5    .data               main.o
+
+
+    Execution Region ER_ZI (Exec base: 0x1ffffc14, Load base: 0x00001930, Size: 0x00000364, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x1ffffc14        -       0x00000060   Zero   RW          295    .bss                c_p.l(libspace.o)
+    0x1ffffc74   0x00001930   0x00000004   PAD
+    0x1ffffc78        -       0x00000000   Zero   RW          144    HEAP                startup_mkl05z4.o
+    0x1ffffc78        -       0x00000300   Zero   RW          143    STACK               startup_mkl05z4.o
 
 
 ==============================================================================
@@ -767,17 +770,17 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       448        110          0         12          0      90025   main.o
-       292         22          0          0          0       8795   sharpsens.o
+       664        136          0         18          0      90297   main.o
+       292         24          0          0          0       8795   sharpsens.o
         68         38        192          0        768        856   startup_mkl05z4.o
         92         14          0          0          0        473   system_mkl05z4.o
        244         22          0          0          0        442   tracks.o
        128         12          0          0          0        405   uart.o
 
     ----------------------------------------------------------------------
-      1272        218        224         12        768     100996   Object Totals
+      1488        246        224         20        768     101268   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-         0          0          0          0          0          0   (incl. Padding)
+         0          0          0          2          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -850,15 +853,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      5812        344        400         12        868     102068   Grand Totals
-      5812        344        400         12        868     102068   ELF Image Totals
-      5812        344        400         12          0          0   ROM Totals
+      6028        372        400         20        868     102340   Grand Totals
+      6028        372        400         20        868     102340   ELF Image Totals
+      6028        372        400         20          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 6212 (   6.07kB)
-    Total RW  Size (RW Data + ZI Data)               880 (   0.86kB)
-    Total ROM Size (Code + RO Data + RW Data)       6224 (   6.08kB)
+    Total RO  Size (Code + RO Data)                 6428 (   6.28kB)
+    Total RW  Size (RW Data + ZI Data)               888 (   0.87kB)
+    Total ROM Size (Code + RO Data + RW Data)       6448 (   6.30kB)
 
 ==============================================================================
 

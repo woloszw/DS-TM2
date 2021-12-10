@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\LowCostLidar.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\LowCostLidar.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue Dec 07 12:39:26 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Fri Dec 10 19:59:49 2021
 <BR><P>
 <H3>Maximum Stack Usage =        368 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -216,7 +216,7 @@ Global Symbols
 <P><STRONG><a name="[8e]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[44]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 208 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; __2sprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -586,14 +586,14 @@ Global Symbols
 
 <P><STRONG><a name="[a0]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[1b]"></a>ADC0_IRQHandler</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, main.o(i.ADC0_IRQHandler))
+<P><STRONG><a name="[1b]"></a>ADC0_IRQHandler</STRONG> (Thumb, 138 bytes, Stack size 8 bytes, main.o(i.ADC0_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = ADC0_IRQHandler
 </UL>
 <BR>[Calls]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_mkl05z4.o(RESET)
 </UL>
-<P><STRONG><a name="[67]"></a>ADC_Init</STRONG> (Thumb, 270 bytes, Stack size 0 bytes, sharpsens.o(i.ADC_Init))
+<P><STRONG><a name="[67]"></a>ADC_Init</STRONG> (Thumb, 268 bytes, Stack size 0 bytes, sharpsens.o(i.ADC_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -614,8 +614,8 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_dec_real
 </UL>
 
-<P><STRONG><a name="[45]"></a>main</STRONG> (Thumb, 286 bytes, Stack size 64 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
+<P><STRONG><a name="[45]"></a>main</STRONG> (Thumb, 390 bytes, Stack size 88 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 208 + Unknown Stack Size
 <LI>Call Chain = main &rArr; __2sprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul

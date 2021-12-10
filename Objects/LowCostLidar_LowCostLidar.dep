@@ -1,6 +1,6 @@
 Dependencies for Project 'LowCostLidar', Target 'LowCostLidar': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
-F (.\main.c)(0x61AF47D1)(--c99 -c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_LowCostLidar-IC:\Users\wolos\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\wolos\AppData\Local\Arm\Packs\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DMKL05Z32xxx4 -D_RTE_-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\main.c)(0x61B3A3A4)(--c99 -c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_LowCostLidar-IC:\Users\wolos\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\wolos\AppData\Local\Arm\Packs\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DMKL05Z32xxx4 -D_RTE_-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (frdm_bsp.h)(0x6176C97E)
 I (C:\Users\wolos\AppData\Local\Arm\Packs\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\MKL05Z4.h)(0x585BD06A)
 I (C:\Users\wolos\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm0plus.h)(0x60D43D42)
@@ -15,7 +15,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x602577D4)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x602577DE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x602577D4)
 I (tracks.h)(0x61AF2904)
-F (.\SharpSens.c)(0x61AF47EE)(--c99 -c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_LowCostLidar-IC:\Users\wolos\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\wolos\AppData\Local\Arm\Packs\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DMKL05Z32xxx4 -D_RTE_-o .\objects\sharpsens.o --omf_browse .\objects\sharpsens.crf --depend .\objects\sharpsens.d)
+F (.\SharpSens.c)(0x61B39BB2)(--c99 -c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_LowCostLidar-IC:\Users\wolos\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\wolos\AppData\Local\Arm\Packs\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DMKL05Z32xxx4 -D_RTE_-o .\objects\sharpsens.o --omf_browse .\objects\sharpsens.crf --depend .\objects\sharpsens.d)
 I (SharpSens.h)(0x61AF47EE)
 I (C:\Users\wolos\AppData\Local\Arm\Packs\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\MKL05Z4.h)(0x585BD06A)
 I (C:\Users\wolos\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm0plus.h)(0x60D43D42)
@@ -24,7 +24,7 @@ I (C:\Users\wolos\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cms
 I (C:\Users\wolos\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_compiler.h)(0x60D43D42)
 I (C:\Users\wolos\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armcc.h)(0x60D43D42)
 I (C:\Users\wolos\AppData\Local\Arm\Packs\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\system_MKL05Z4.h)(0x55FBBCD8)
-F (.\UART.c)(0x61AE3783)(--c99 -c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_LowCostLidar-IC:\Users\wolos\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\wolos\AppData\Local\Arm\Packs\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DMKL05Z32xxx4 -D_RTE_-o .\objects\uart.o --omf_browse .\objects\uart.crf --depend .\objects\uart.d)
+F (.\UART.c)(0x61AF8C71)(--c99 -c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_LowCostLidar-IC:\Users\wolos\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\wolos\AppData\Local\Arm\Packs\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DMKL05Z32xxx4 -D_RTE_-o .\objects\uart.o --omf_browse .\objects\uart.crf --depend .\objects\uart.d)
 I (UART.h)(0x61AE3785)
 I (C:\Users\wolos\AppData\Local\Arm\Packs\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\MKL05Z4.h)(0x585BD06A)
 I (C:\Users\wolos\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm0plus.h)(0x60D43D42)
