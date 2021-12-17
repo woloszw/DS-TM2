@@ -22,15 +22,21 @@ Dialog DLL:      TARMCM1.DLL V1.14.4.0
  
 <h2>Project:</h2>
 C:\Users\wolos\Documents\GitFolders\DS_TM2_WW_RF\LowCostLidar.uvprojx
-Project File Date:  12/07/2021
+Project File Date:  12/17/2021
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'LowCostLidar'
 compiling main.c...
+compiling UART.c...
+compiling SharpSens.c...
+SharpSens.c(49): warning:  #1-D: last line of file ends without a newline
+  }
+SharpSens.c: 1 warning, 0 errors
+compiling tracks.c...
 linking...
-Program Size: Code=6456 RO-data=400 RW-data=20 ZI-data=868  
-".\Objects\LowCostLidar.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=6456 RO-data=400 RW-data=24 ZI-data=864  
+".\Objects\LowCostLidar.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -58,7 +64,7 @@ Package Vendor: Keil
    * Component: Keil::Device:Startup:1.0.0
       Source file:   Device\Source\ARM\startup_MKL05Z4.s
       Source file:   Device\Source\system_MKL05Z4.c
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>

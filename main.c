@@ -9,7 +9,7 @@
 #define ENTER	0xa
 
 float volt_coeff = ((float)(((float)2.91) / 4095) );			// Wspólczynnik korekcji wyniku, w stosunku do napiecia referencyjnego przetwornika
-uint16_t sensOne, sensTwo;
+uint16_t sensOne, sensTwo, sensThree, sensFour;
 float ADC_temp, ADC_temp2;
 uint16_t counter = 1;
 
