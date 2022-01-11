@@ -13,14 +13,25 @@
 #define Sens3Channel 4
 #define Sens4Channel 6
 
-int ChannelArr[] = {Sens1Channel, Sens4Channel};
+#define LEFT_TRACK_PWM_CHANEL 5
+#define RIGHT_TRACK_PWM_CHANEL 0
 
+int ChannelArr[] = {Sens1Channel, Sens4Channel};
+volatile uint8_t track_stop = 1;
 void ADC0_IRQHandler()
 {	
 	NVIC_EnableIRQ(ADC0_IRQn);
 }
 
 char rx_buf[]={0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20};
+
+
+
+
+	
+
+
+
 
 void PrintSensorData()
 {
@@ -41,6 +52,13 @@ void PrintSensorData()
 	}
 		while(!(UART0->S1 & UART0_S1_TDRE_MASK));
 		UART0->D = ENTER;	
+}
+
+void SysTick_Handler(void)  {                               /* SysTick interrupt Handler. */
+  TPM0->CONTROLS[RIGHT_TRACK_PWM_CHANEL].CnV = 100; // 70 best speed
+	TPM0->CONTROLS[LEFT_TRACK_PWM_CHANEL].CnV = 100;		// 70 best speed	
+	PrintSensorData();
+	track_stop = 1;                                        /* See startup file startup_LPC17xx.s for SysTick vector */ 
 }
 
 int main (void)
@@ -79,7 +97,11 @@ int main (void)
 	
 	while(1)
 {	
-		PrintSensorData();
+	if(track_stop == 1) {
+				SysTick_Config(SystemCoreClock/40 );
+				TPM0->CONTROLS[RIGHT_TRACK_PWM_CHANEL].CnV = 70; // 70 best speed
+				TPM0->CONTROLS[LEFT_TRACK_PWM_CHANEL].CnV = 70;
+				track_stop = 0;}
 		DELAY(500);	
 	}
 }
