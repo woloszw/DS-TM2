@@ -1,12 +1,17 @@
 #include "SharpSens.h"
+float volt_coeff = ((float)(((float)2.91) / 4095) );			// Wspólczynnik korekcji wyniku, w stosunku do napiecia referencyjnego przetwornika
 
 uint8_t ADC_Init(void)
 {
 	uint16_t calib_temp;
 	SIM->SCGC6 |= SIM_SCGC6_ADC0_MASK;          // Dolaczenie sygnalu zegara do ADC0
 	SIM->SCGC5 |= SIM_SCGC5_PORTA_MASK | SIM_SCGC5_PORTB_MASK;					// Dolaczenie syganlu zegara do portu A
+	
 	PORTA->PCR[9] &=~ (PORT_PCR_MUX(0));				//PTA9 - wejscie analogowe, kanal 2
 	PORTB->PCR[0] &=~ (PORT_PCR_MUX(0));				//PTB0 - wejscie analogowe, kanal 6
+	PORTA->PCR[8] &=~ (PORT_PCR_MUX(0));				//PTA8 - wejscie analogowe, kanal 3
+	PORTB->PCR[2] &=~ (PORT_PCR_MUX(0));				//PTB0 - wejscie analogowe, kanal 4
+	
 	
 
 	ADC0->CFG1 = ADC_CFG1_ADICLK(ADICLK_BUS_2) | ADC_CFG1_ADIV(ADIV_4) | ADC_CFG1_ADLSMP_MASK;	// Zegar ADCK równy 2.62MHz (2621440Hz)
@@ -37,8 +42,9 @@ uint8_t ADC_Init(void)
 	ADC0->SC1[0] = ADC_SC1_ADCH(31);
 	ADC0->CFG2 |= ADC_CFG2_ADHSC_MASK;
 	ADC0->CFG1 = ADC_CFG1_ADICLK(ADICLK_BUS_2) | ADC_CFG1_ADIV(ADIV_1) | ADC_CFG1_ADLSMP_MASK | ADC_CFG1_MODE(MODE_12);	// Zegar ADCK równy 10.49MHz (10485760Hz), rozdzielczosc 12 bitów, dlugi czas próbkowania
-	
-	//ADC0->SC3 |= ADC_SC3_ADCO_MASK;						//Przetwarzanie ciagle
+	ADC0->SC1[0] = ADC_SC1_AIEN_MASK;
+	ADC0->SC1[0] = ADC_SC1_ADCH(2);
+	ADC0->SC3 |= ADC_SC3_ADCO_MASK;						//Przetwarzanie ciagle
 	//ADC0->SC2 |= ADC_SC2_ADTRG_MASK;						// Wlaczenie wyzwalania sprzetowego
 	//SIM->SOPT7 |= SIM_SOPT7_ADC0ALTTRGEN_MASK | SIM_SOPT7_ADC0TRGSEL(4);		// Wyzwalanie ADC0 przez PIT0
 	
@@ -46,4 +52,13 @@ uint8_t ADC_Init(void)
 	NVIC_EnableIRQ(ADC0_IRQn);
 	
 	return(0);
+}
+
+float GetSensorData(uint16_t channel)
+{
+	ADC0->SC1[0] = ADC_SC1_ADCH(channel);																					// Zmiana kanalu na ADC_SE0
+	while(((ADC0->SC1[0] & ADC_SC1_COCO_MASK)>>ADC_SC1_COCO_SHIFT) == 0);		// Czekaj na odczyt
+	uint16_t adc_value = ADC0->R[0];	// Odczyt danej i skasowanie flagi COCO
+	float value = adc_value * volt_coeff;
+	return value;
 }

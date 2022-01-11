@@ -43,4 +43,6 @@
 #define AVGS_16            0x02
 #define AVGS_32            0x03
 //************************************************
+
 uint8_t ADC_Init(void);
+float GetSensorData(uint16_t channel);
