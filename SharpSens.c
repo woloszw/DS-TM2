@@ -10,8 +10,8 @@ uint8_t ADC_Init(void)
 	PORTA->PCR[9] &=~ (PORT_PCR_MUX(0));				//PTA9 - wejscie analogowe, kanal 2
 	PORTB->PCR[0] &=~ (PORT_PCR_MUX(0));				//PTB0 - wejscie analogowe, kanal 6
 	PORTA->PCR[8] &=~ (PORT_PCR_MUX(0));				//PTA8 - wejscie analogowe, kanal 3
-	PORTB->PCR[2] &=~ (PORT_PCR_MUX(0));				//PTB0 - wejscie analogowe, kanal 4
-	
+	PORTB->PCR[2] &=~ (PORT_PCR_MUX(0));				//PTB2 - wejscie analogowe, kanal 4
+	PORTA->PCR[7] &=~ (PORT_PCR_MUX(0));
 	
 
 	ADC0->CFG1 = ADC_CFG1_ADICLK(ADICLK_BUS_2) | ADC_CFG1_ADIV(ADIV_4) | ADC_CFG1_ADLSMP_MASK;	// Zegar ADCK równy 2.62MHz (2621440Hz)
