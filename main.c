@@ -7,41 +7,32 @@
 #include "MKL05Z4.h"
 #include "uart0.h"
 
-#include "led.h"
-
-
 
 #define ENTER	0xa
+#define BuffSize  16 
 
-
+// Channels of ADC0 corresponding to particular GPIO (see SharpSens.c)
 #define Sens1Channel 2
 #define Sens2Channel 7
 #define Sens3Channel 3
 #define Sens4Channel 6
 int ChannelArr[] = {Sens1Channel, Sens2Channel, Sens3Channel, Sens4Channel};
 
-#define LEFT_TRACK_PWM_CHANEL 5
-#define RIGHT_TRACK_PWM_CHANEL 0
+#define LEFT_TRACK_PWM_CHANNEL 5
+#define RIGHT_TRACK_PWM_CHANNEL 0
 
-volatile uint8_t track_stop = 1;
-
-#define BuffSize  16
 char rx_buf[BuffSize];
 char angle_buf[BuffSize];
 
+//Variables used for 
 volatile  int angle = 3;
-volatile  int spin_status = 1;
+volatile  int spin_status = 0;
+volatile uint8_t track_stop = 1;
 
+char temp;
 uint8_t rx_buf_pos=0;
-char temp, buf;
 uint8_t rx_FULL=1;
 uint8_t too_long=0;
-
-char LED_R_ON[]="LRON";
-char LED_R_OFF[]="LROFF";
-char Error[]="Zla komenda";
-char Too_Long[]="Zbyt dlugi ciag";
-char Correct[] = "Wysylanie danych";
 
 void mPrint(char array[])
 {
@@ -56,36 +47,21 @@ void mPrint(char array[])
 
 void PrintSensorData(int angle)
 {
-	//Ta funckja wyswietla dane potrzebne do wyswietlenia w Matlabie
 	int i = 0;
 	while(i < (sizeof(ChannelArr)/sizeof ChannelArr[0]))
 	{		
 			float ADC_temp = GetSensorData(ChannelArr[i]);
 			sprintf(rx_buf,"%f", ADC_temp);
-			for(uint32_t j=0;rx_buf[j]!=0;j++)
-			{
-				while(!(UART0->S1 & UART0_S1_TDRE_MASK));
-				UART0->D = rx_buf[j];
-			}
-			while(!(UART0->S1 & UART0_S1_TDRE_MASK));
+			mPrint(rx_buf);
 			UART0->D = ';';
-			
 			angle = (angle)%90 + 90*i;
 			sprintf(angle_buf,"%i", angle);
-			
-			while(!(UART0->S1 & UART0_S1_TDRE_MASK));
-			for(uint32_t m=0;angle_buf[m]!=0;m++)
-			{
-				while(!(UART0->S1 & UART0_S1_TDRE_MASK));
-				UART0->D = angle_buf[m];
-			}
+			mPrint(angle_buf);
 			while(!(UART0->S1 & UART0_S1_TDRE_MASK));
 			UART0->D = ENTER;			
 		i++;
 	}
-		//DO WYRZUCENIA POD KONIEC
 		while(!(UART0->S1 & UART0_S1_TDRE_MASK));
-		//UART0->D = ENTER;	
 }
 
 void SysTick_Handler(void)  {
@@ -93,8 +69,8 @@ void SysTick_Handler(void)  {
 	if (track_stop == 0)		
 	{		
 	track_stop = 1;
-	TPM0->CONTROLS[RIGHT_TRACK_PWM_CHANEL].CnV = 100; // 70 best speed
-	TPM0->CONTROLS[LEFT_TRACK_PWM_CHANEL].CnV = 100;		// 70 best speed	
+	TPM0->CONTROLS[RIGHT_TRACK_PWM_CHANNEL].CnV = 100; // 70 best speed
+	TPM0->CONTROLS[LEFT_TRACK_PWM_CHANNEL].CnV = 100;		// 70 best speed	
 	
 		if(angle == 3)
 		{
@@ -168,7 +144,7 @@ int main (void)
 			}
 			else
 			{
-				if(strcmp(rx_buf,"RUN")==0)	// Zaswiec czerwona diode LED 
+				if(strcmp(rx_buf,"run")==0)	// Zaswiec czerwona diode LED 
 				{
 
 					spin_status = 1;
@@ -187,16 +163,16 @@ int main (void)
 //				}
 				}
 			rx_buf_pos=0;
-			rx_FULL=0;	// Dana skonsumowana
+			rx_FULL=0;
 		}
 		
-		if (spin_status == 1)
+		if (spin_status == 1) 
 		{
 			if(track_stop == 1) 
 			{
 				SysTick_Config(SystemCoreClock/40 );
-				TPM0->CONTROLS[RIGHT_TRACK_PWM_CHANEL].CnV = 70; // 70 best speed
-				TPM0->CONTROLS[LEFT_TRACK_PWM_CHANEL].CnV = 70;
+				TPM0->CONTROLS[RIGHT_TRACK_PWM_CHANNEL].CnV = 70; // 70 best speed
+				TPM0->CONTROLS[LEFT_TRACK_PWM_CHANNEL].CnV = 70;
 				track_stop = 0;
 			}
 		}
