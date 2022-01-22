@@ -399,11 +399,6 @@
               <FilePath>.\tracks.c</FilePath>
             </File>
             <File>
-              <FileName>led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\led.c</FilePath>
-            </File>
-            <File>
               <FileName>uart0.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\uart0.c</FilePath>
@@ -427,11 +422,6 @@
               <FileName>tracks.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\tracks.h</FilePath>
-            </File>
-            <File>
-              <FileName>led.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\led.h</FilePath>
             </File>
             <File>
               <FileName>uart0.h</FileName>
